@@ -1,0 +1,36 @@
+函数式编程和过程，面向对象编程的区别（理念）
+
+
+
+1，调用父类，默认静态方法调用
+ parent::__construct($argument);
+
+2，接口里面，不能实现具体的方法
+interface heros_interface 
+{
+    public function atk_i($value='');    
+    public function run_i($value='');
+}
+
+3，抽象类，
+    1），里面如果定义了abstarct方法，则必须不能实现方法，且必须在继承类中被实现
+    2），抽象类不能被实例，只能被继承
+    3），抽象类里面如果定义了普通的方法，则跟普通类使用一致
+
+    abstract class heros_abstract
+    {
+        //子类必须实现此方法
+        abstract function heros_a();
+
+        //普通方法
+        public function atk_a($value='') {
+            echo "atk a " . $value .  PHP_EOL;
+        }
+    }
+
+
+PS：
+1，发现抽象方法和接口有一个差别，接口和抽象类定义的内部空方法，继承类必须实现，区别在于接口不允许实现内部方法，抽象类可以实现。    
+2，鉴于以上，那就有了2种不同的项目分工模式。
+    1，接口偏向统一管理，分散实现
+    2，抽象方法，既包含了接口的处理方式，同时又新增了统一实现方式，更符合某些业务开发（公司级别的支付框架）。
